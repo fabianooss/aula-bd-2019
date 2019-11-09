@@ -2,6 +2,7 @@ package org.senac.bd.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,11 +15,14 @@ public class Contato {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Integer id;
 	
+	@Column(length = 100)
 	private String nome;
 	
 	private String email;
 	
 	private BigDecimal renda;
+	
+	private byte[] imagem;
 
 	public Integer getId() {
 		return id;
@@ -50,6 +54,14 @@ public class Contato {
 
 	public void setRenda(BigDecimal renda) {
 		this.renda = renda;
+	}
+
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 	
 	
