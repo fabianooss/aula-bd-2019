@@ -39,7 +39,7 @@ public class FotoController {
 			return ResponseEntity.ok(foto.getId());
 		} catch (IOException e) {
 			e.printStackTrace();
-			return new ResponseEntity(e.getMessage(),
+			return new ResponseEntity<String>(e.getMessage(),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
