@@ -1,5 +1,6 @@
 package org.senac.bd.domain;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,6 +34,10 @@ public class Carro {
 	 */
 	@OneToMany(mappedBy = "carro")	
 	private List<Avaliacao> avaliacoes;
+	
+	
+	public BigDecimal preco;
+	
 
 	public Integer getId() {
 		return id;
@@ -64,6 +69,14 @@ public class Carro {
 
 	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
 		this.avaliacoes = avaliacoes;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 	
 	

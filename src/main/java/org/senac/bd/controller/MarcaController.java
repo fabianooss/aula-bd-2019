@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.senac.bd.domain.Marca;
 import org.senac.bd.repository.MarcaRepository;
+import org.senac.bd.vo.MarcaTotal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,11 @@ public class MarcaController {
 	public List<Marca> findAll() {
 		Sort s = Sort.by("nome", "id");
 		return repository.findAll(s);
+	}
+	
+	@GetMapping("/valorTotal")
+	public List<MarcaTotal> findMarcaTotal() {
+		return repository.findMarcaTotal();
 	}
 	
 	@PostMapping

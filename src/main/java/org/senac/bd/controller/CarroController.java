@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.senac.bd.domain.Carro;
 import org.senac.bd.repository.CarroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +30,16 @@ public class CarroController {
 	}
 	
 	@PostMapping
-	public Carro salvar(@RequestBody @Valid Carro carro) {
-		return repository.save(carro);
+	public ResponseEntity<?> salvar(@RequestBody @Valid Carro carro) {		
+		if (repository.findByNomeAndMarca(carro.getNome(), 
+				carro.getMarca().getId()) == null)
+			return ResponseEntity.ok(repository.save(carro));
+		return 
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+			.body(String.format(
+					"Carro %s já registrado", carro.getNome()));
+	
+			
 	}
 	
 	@GetMapping("/{id}")
